@@ -19,3 +19,16 @@ spec:
     kind: PoisonPillRemediationTemplate
     apiVersion: poison-pill.medik8s.io/v1alpha1
     name: poisonpillremediationtemplate-sample
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: poison-pill-manager-alpha-redhat-operators-openshift-marketplace
+  namespace: openshift-operators
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  name: poison-pill-manager
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: poison-pill.v0.2.0
