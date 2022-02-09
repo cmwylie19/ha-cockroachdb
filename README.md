@@ -227,7 +227,7 @@ Uninstall CSVs for NodeHealthCheck and PoisonPill
 kubectl delete csv -n openshift-operators node-healthcheck-operator.v0.1.0 
 kubectl delete csv -n openshift-operators poison-pill.v0.2.0 
 
-kubectl delete ds poison-pill-ds -n openshift-operators --all
+kubectl delete ds poison-pill-ds -n openshift-operators
 ```
 
 ## Test 2
@@ -280,7 +280,7 @@ EOF
 **Stop Instance in AWS**  
 Write Test
 ```
-kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-public.cockroachdb.svc.cluster.local:26257 --execute="INSERT INTO roaches VALUES ('c', 'Candy'), ('D', 'Donut')"
+kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-public.cockroachdb.svc.cluster.local:26257 --execute="INSERT INTO roaches VALUES ('C', 'Candy'), ('D', 'Donut')"
 ```
 output
 ```
@@ -299,7 +299,9 @@ output
 ------------------------+----------------
   American Cockroach    | United States
   Brownbanded Cockroach | United States
-(2 rows)
+  C                     | Candy
+  D                     | Donut
+(4 rows)
 
 
 Time: 2ms
@@ -334,7 +336,7 @@ Uninstall CSV for PoisonPill
 ```
 kubectl delete csv -n openshift-operators poison-pill.v0.2.0 
 
-kubectl delete ds poison-pill-ds -n openshift-operators --all
+kubectl delete ds poison-pill-ds -n openshift-operators
 ```
 ## Commands
 Watch pod name, node of pod, and pod status in `cockroachdb`
