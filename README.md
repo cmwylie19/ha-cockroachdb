@@ -39,7 +39,10 @@ kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-publ
 ```
 output:
 ```
-Error from server: error dialing backend: dial tcp 10.0.153.176:10250: connect: no route to host
+INSERT 2
+
+
+Time: 860ms
 ```
 
 Read Test
@@ -48,7 +51,16 @@ kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-publ
 ```
 output:
 ```
-Error from server: error dialing backend: dial tcp 10.0.153.176:10250: connect: no route to host
+          name          |    country
+------------------------+----------------
+  American Cockroach    | United States
+  Brownbanded Cockroach | United States
+  A                     | Apple
+  B                     | Banana
+(4 rows)
+
+
+Time: 7ms
 ```
 
 **Stop Another Instance in AWS**   
@@ -58,7 +70,13 @@ kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-publ
 ```
 output
 ```
-Error from server: error dialing backend: dial tcp 10.0.153.176:10250: connect: no route to host
+ERROR: cannot dial server.
+Is the server running?
+If the server is running, check --host client-side and --advertise server-side.
+
+dial tcp 172.30.252.79:26257: connect: no route to host
+Failed running "sql"
+command terminated with exit code 1
 ```
 Read Test
 ```
@@ -66,26 +84,15 @@ kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-publ
 ```
 output
 ```
-Error from server: error dialing backend: dial tcp 10.0.153.176:10250: connect: no route to host
+ERROR: cannot dial server.
+Is the server running?
+If the server is running, check --host client-side and --advertise server-side.
+
+dial tcp 172.30.252.79:26257: connect: no route to host
+Failed running "sql"
+command terminated with exit code 1
 ```
 
-**Stop Start Instances in AWS**  
-Read Test
-```
-kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-public.cockroachdb.svc.cluster.local:26257 --execute="SELECT * FROM roaches;"
-```
-
-output
-```
-          name          |    country
-------------------------+----------------
-  American Cockroach    | United States
-  Brownbanded Cockroach | United States
-(2 rows)
-
-
-Time: 29ms
-```
 ### _Cleanup_:   
 Install CockroachDB
 ```
@@ -98,7 +105,7 @@ kubectl get pod,pvc -n cockroachdb
 kubectl delete pods,pvc --all -n cockroachdb
 ```
 
-Delete pod
+Delete tester pod
 ```
 helm uninstall crdb-tester
 ```
