@@ -144,7 +144,7 @@ helm install crdb-tester charts/tester-pod
 **Stop Instances in AWS**  
 Write Test
 ```
-kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-public.cockroachdb.svc.cluster.local:26257 --execute="INSERT INTO roaches VALUES ('c', 'Candy'), ('D', 'Donut')"
+kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-public.cockroachdb.svc.cluster.local:26257 --execute="INSERT INTO roaches VALUES ('C', 'Candy'), ('D', 'Donut')"
 ```
 output
 ```
@@ -163,10 +163,12 @@ output
 ------------------------+----------------
   American Cockroach    | United States
   Brownbanded Cockroach | United States
-(2 rows)
+  C                     | Candy
+  D                     | Donut
+(4 rows)
 
 
-Time: 2ms
+Time: 352ms
 ```
 
 ### _Cleanup_:  
@@ -194,6 +196,10 @@ Uninstall NodeHealthCheck and PoisonPill
 helm uninstall nhc -n openshift-operators 
 ```
 
+Delete tester pod
+```
+helm uninstall crdb-tester
+```
 
 ## Test 2
 ### OCP Install with Machine Health Check and Poison Pill
