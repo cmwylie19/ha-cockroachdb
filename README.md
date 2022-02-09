@@ -66,7 +66,7 @@ Time: 7ms
 **Stop Another Instance in AWS**   
 Write Test
 ```
-kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-public.cockroachdb.svc.cluster.local:26257 --execute="INSERT INTO roaches VALUES ('c', 'Candy'), ('D', 'Donut')"
+kubectl exec -it crdb-tester -- cockroach sql --insecure --host=cockroachdb-public.cockroachdb.svc.cluster.local:26257 --execute="INSERT INTO roaches VALUES ('C', 'Candy'), ('D', 'Donut')"
 ```
 output
 ```
@@ -94,6 +94,8 @@ command terminated with exit code 1
 ```
 
 ### _Cleanup_:   
+**Start all instances.**   
+
 Install CockroachDB
 ```
 helm uninstall cockroachdb -n cockroachdb 
@@ -167,7 +169,9 @@ output
 Time: 2ms
 ```
 
-### _Cleanup_:   
+### _Cleanup_:  
+**Start all instances.**   
+
 Install CockroachDB
 ```
 helm uninstall cockroachdb -n cockroachdb 
@@ -245,6 +249,8 @@ Time: 2ms
 ```
 
 ### _Cleanup_:   
+**Start all instances.**   
+
 Install CockroachDB
 ```
 helm uninstall cockroachdb -n cockroachdb 
