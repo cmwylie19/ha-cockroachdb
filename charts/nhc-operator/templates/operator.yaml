@@ -1,0 +1,34 @@
+# apiVersion: operators.coreos.com/v1
+# kind: OperatorGroup
+# metadata:
+#   name: node-health-check-operator
+#   namespace: openshift-operators
+# spec:
+#   targetNamespaces:
+#   - openshift-operators
+# ---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: node-healthcheck-operator
+  namespace: openshift-operators
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  name: node-healthcheck-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: node-healthcheck-operator.v0.1.0
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: poison-pill-manager-alpha-redhat-operators-openshift-marketplace
+  namespace: openshift-operators
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  name: poison-pill-manager
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: poison-pill.v0.2.0
