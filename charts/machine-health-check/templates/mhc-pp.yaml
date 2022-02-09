@@ -18,7 +18,8 @@ spec:
   remediationTemplate: 
     kind: PoisonPillRemediationTemplate
     apiVersion: poison-pill.medik8s.io/v1alpha1
-    name: poisonpillremediationtemplate-sample
+    name: poison-pill-default-template
+    namespace: openshift-machine-api
 ---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription

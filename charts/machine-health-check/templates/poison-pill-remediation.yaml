@@ -2,28 +2,7 @@ apiVersion: poison-pill.medik8s.io/v1alpha1
 kind: PoisonPillRemediationTemplate
 metadata:
   namespace: openshift-machine-api
-  name: poisonpillremediationtemplate-sample
+  name: poison-pill-default-template
 spec:
   template:
     spec: {}
----
-apiVersion: poison-pill.medik8s.io/v1alpha1
-kind: PoisonPillConfig
-metadata:
-  creationTimestamp: "2022-02-08T23:54:42Z"
-  generation: 1
-  name: poison-pill-config
-  namespace: openshift-operators
-  resourceVersion: "84469"
-  uid: f8c3796e-91f4-459a-bc31-842d12833153
-spec:
-  apiCheckInterval: 15s
-  apiServerTimeout: 5s
-  isSoftwareRebootEnabled: true
-  maxApiErrorThreshold: 3
-  peerApiServerTimeout: 5s
-  peerDialTimeout: 5s
-  peerRequestTimeout: 5s
-  peerUpdateInterval: 15m
-  safeTimeToAssumeNodeRebootedSeconds: 180
-  watchdogFilePath: /dev/watchdog

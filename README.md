@@ -222,6 +222,14 @@ Delete tester pod
 helm uninstall crdb-tester
 ```
 
+Uninstall CSVs for NodeHealthCheck and PoisonPill
+```
+kubectl delete csv -n openshift-operators node-healthcheck-operator.v0.1.0 
+kubectl delete csv -n openshift-operators poison-pill.v0.2.0 
+
+kubectl delete ds poison-pill-ds -n openshift-operators --all
+```
+
 ## Test 2
 ### OCP Install with Machine Health Check and Poison Pill
 _Scenerio_: A node is not able to reach the api server due to transient failure. The poison pill remediation marked the node as SchedulingDisabled. But once the node was back, the node was eventually marked as Ready. The pod was rerun in the same node.  
@@ -322,6 +330,12 @@ Delete pod
 helm uninstall crdb-tester
 ```
 
+Uninstall CSV for PoisonPill
+```
+kubectl delete csv -n openshift-operators poison-pill.v0.2.0 
+
+kubectl delete ds poison-pill-ds -n openshift-operators --all
+```
 ## Commands
 Watch pod name, node of pod, and pod status in `cockroachdb`
 ```
@@ -335,4 +349,12 @@ kubectl get ppr -A -w
 Watch nodes in `cockroachdb`
 ```
 kubectl get nodes -n cockroachdb -w
+```
+
+## Debug
+```
+k logs deploy/poison-pill-controller-manager -n openshift-operators -c manager      
+
+
+k logs deploy/node-healthcheck-operator-controller-manager -n openshift-operators -c manager
 ```

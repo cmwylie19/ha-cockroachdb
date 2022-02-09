@@ -20,6 +20,3 @@ spec:
   - duration: 10s
     status: Unknown
     type: Ready
-status:
-  healthyNodes: 3
-  observedNodes: 3
