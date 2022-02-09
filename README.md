@@ -1,5 +1,6 @@
 # HA Cockroach DB
 OCP 4.9.9 on AWS
+Based on [HA Cockroach DB](https://docs.google.com/document/d/1d4W69xKwLtjhteCi604jl33EDGVaEJJ_2zmzIgeNfuw/edit)
 
 ### TOC
 - [Only CockroachDB](#test-0)
