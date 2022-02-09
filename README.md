@@ -354,6 +354,7 @@ kubectl get nodes -n cockroachdb -w
 ```
 
 ## Debug
+Quickly check the controller managers
 ```
 k logs deploy/poison-pill-controller-manager -n openshift-operators -c manager      
 
