@@ -365,6 +365,28 @@ spec:
     spec: {}
 EOF
 ```
+
+Remove PoisonPillConfig
+```
+kubectl delete -f -<<EOF
+apiVersion: poison-pill.medik8s.io/v1alpha1
+kind: PoisonPillConfig
+metadata:
+  name: poison-pill-config
+  namespace: openshift-operators
+spec:
+  apiCheckInterval: 15s
+  apiServerTimeout: 5s
+  isSoftwareRebootEnabled: true
+  maxApiErrorThreshold: 3
+  peerApiServerTimeout: 5s
+  peerDialTimeout: 5s
+  peerRequestTimeout: 5s
+  peerUpdateInterval: 15m
+  safeTimeToAssumeNodeRebootedSeconds: 10
+  watchdogFilePath: /dev/watchdog
+EOF
+```
 ## Commands
 Watch pod name, node of pod, and pod status in `cockroachdb`
 ```
