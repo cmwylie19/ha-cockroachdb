@@ -1,8 +1,0 @@
-apiVersion: poison-pill.medik8s.io/v1alpha1
-kind: PoisonPillRemediationTemplate
-metadata:
-  namespace: openshift-machine-api
-  name: poison-pill-default-template
-spec:
-  template:
-    spec: {}

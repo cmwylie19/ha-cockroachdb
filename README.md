@@ -250,6 +250,19 @@ Install MachineHealthCheck and PoisonPill
 helm install mch -n openshift-operators charts/machine-health-check 
 ```
 
+Install PoisonPillRemediationTemplate
+```
+kubectl apply -f -<<EOF
+apiVersion: poison-pill.medik8s.io/v1alpha1
+kind: PoisonPillRemediationTemplate
+metadata:
+  namespace: openshift-machine-api
+  name: poison-pill-default-template
+spec:
+  template:
+    spec: {}
+EOF
+```
 Create a pod to communicate to the cockroach service
 ```
 helm install crdb-tester charts/tester-pod
