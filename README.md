@@ -323,7 +323,7 @@ Time: 2ms
 ### _Cleanup_:   
 **Start all instances.**   
 
-Install CockroachDB
+Uninstall CockroachDB
 ```
 helm uninstall cockroachdb -n cockroachdb 
 ```
@@ -350,6 +350,20 @@ Uninstall CSV for PoisonPill
 kubectl delete csv -n openshift-operators poison-pill.v0.2.0 
 
 kubectl delete ds poison-pill-ds -n openshift-operators
+```
+
+Uninstall PoisonPillRemediationTemplate
+```
+kubectl delete -f -<<EOF
+apiVersion: poison-pill.medik8s.io/v1alpha1
+kind: PoisonPillRemediationTemplate
+metadata:
+  namespace: openshift-machine-api
+  name: poison-pill-default-template
+spec:
+  template:
+    spec: {}
+EOF
 ```
 ## Commands
 Watch pod name, node of pod, and pod status in `cockroachdb`
